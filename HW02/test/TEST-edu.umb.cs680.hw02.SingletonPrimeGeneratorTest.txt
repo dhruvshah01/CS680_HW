@@ -1,0 +1,6 @@
+Testcase: edu.umb.cs680.hw02.SingletonPrimeGeneratorTest
+Test: verifySingletonPrimeGeneratorInstance() took 5 milli sec(s)
+Test: verifySingletonPrimeGeneratorInstancesAreSame() took 0 milli sec(s)
+Test: verifyGetPrimesFrom1to20() took 0 milli sec(s)
+Test: verifyGetPrimesThrowsErrorForNegativeInputs() took 1 milli sec(s)
+Tests run: 4, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 12 milli sec(s)

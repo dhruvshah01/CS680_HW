@@ -31,7 +31,7 @@
     <target name="compile" depends="resolve">
         <javac srcdir="${src}" destdir="${bin}" includeAntRuntime="no">
             <classpath refid="classpath"/>
-            <include name="edu/umb/cs680/hw04/*.java"/>
+            <include name="edu/umb/cs680/hw03/*.java"/>
             <!-- include name="edu/umb/cs680/hw04/Car.java"/-->
         </javac>
         <javac srcdir="${test.src}" destdir="${test.bin}" includeAntRuntime="no">
@@ -61,7 +61,7 @@
     </target>
 
     <target name="run" depends="test">
-        <java classname="edu.umb.cs680.hw04.Car"
+        <java classname="edu.umb.cs680.hw03.Car"
               classpathref="classpath"
               fork="true"/>
     </target>
