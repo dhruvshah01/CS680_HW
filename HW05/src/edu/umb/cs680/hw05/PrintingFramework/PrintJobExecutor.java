@@ -1,18 +1,20 @@
 package edu.umb.cs680.hw05.PrintingFramework;
 import edu.umb.cs680.hw05.Login.*;
 abstract public class PrintJobExecutor {
-    public void execute(PrintJob job, SecurityContext ctx, EncryptedString pwd){
+    public boolean execute(PrintJob job, SecurityContext ctx, EncryptedString pwd, User user) throws Exception {
         try{
-            doAuthentication(ctx, pwd);
+            doAuthentication(user, pwd);
             doAccessControl();
-            doPrint(job, ctx, pwd);
+            doPrint(job, ctx, pwd, user);
         } catch (Exception ex){
             doErrorHandling(ex);
+            return false;
         }
+        return true;
     }
 
-    protected abstract void doAuthentication(SecurityContext ctx, EncryptedString pwd);
+    protected abstract void doAuthentication(User user, EncryptedString pwd) throws Exception;
     protected abstract void doAccessControl();
-    protected abstract void doPrint(PrintJob job, SecurityContext ctx, EncryptedString pwd);
+    protected abstract void doPrint(PrintJob job, SecurityContext ctx, EncryptedString pwd, User user) throws Exception;
     protected abstract void doErrorHandling(Exception ex);
 }

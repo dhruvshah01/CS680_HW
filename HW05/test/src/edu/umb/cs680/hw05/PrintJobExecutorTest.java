@@ -5,35 +5,66 @@ import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class PrintJobExecutorTest {
+
     @Test
-    public void ModelABCTest(){
+    public void ModelABCPositiveTest(){
         PrintJob job = new PrintJob();
-        User user = new User("dhruvshah01");
-        EncryptedString pwd = new EncryptedString("xyz");
-        SecurityContext ctx = new SecurityContext(user, pwd);
+        EncryptedString pwd = new EncryptedString("xwz");
+        User user = new User("dhruvshah01", pwd);
+        SecurityContext ctx = new SecurityContext(user);
+        ctx.login(pwd, user);
         PrintJobExecutor printJobExecutor = new edu.umb.cs680.hw05.ModelABC.PrintJobExecutor();
-        printJobExecutor.execute(job, ctx, pwd);
+        try {
+            printJobExecutor.execute(job, ctx, pwd, user);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+    }
+    @Test
+    public void ModelABCNegativeTest(){
+        PrintJob job = new PrintJob();
+
+        EncryptedString pwd = new EncryptedString("xyz");
+        User user = new User("dhruvshah01", pwd);
+        SecurityContext ctx = new SecurityContext(user);
+        PrintJobExecutor printJobExecutor = new edu.umb.cs680.hw05.ModelABC.PrintJobExecutor();
+        try {
+            printJobExecutor.execute(job, ctx, pwd, user);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Test
     public void ModelXYZPositiveTest(){
         PrintJob job = new PrintJob();
-        User user = new User("dhruvshah01");
+
         EncryptedString pwd = new EncryptedString("xyz");
-        SecurityContext ctx = new SecurityContext(user, pwd);
-        ctx.login(pwd);
+        User user = new User("dhruvshah01", pwd);
+        SecurityContext ctx = new SecurityContext(user);
+        ctx.login(pwd, user);
         PrintJobExecutor printJobExecutor = new edu.umb.cs680.hw05.ModelXYZ.PrintJobExecutor();
-        printJobExecutor.execute(job, ctx, pwd);
+        try {
+            assertTrue(printJobExecutor.execute(job, ctx, pwd, user));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
     }
 
     @Test
     public void ModelXYZNegativeTest(){
         PrintJob job = new PrintJob();
-        User user = new User("dhruvshah01");
+
         EncryptedString pwd = new EncryptedString("xyz");
-        SecurityContext ctx = new SecurityContext(user, pwd);
+        User user = new User("dhruvshah01", pwd);
+        SecurityContext ctx = new SecurityContext(user);
         PrintJobExecutor printJobExecutor = new edu.umb.cs680.hw05.ModelXYZ.PrintJobExecutor();
-        printJobExecutor.execute(job, null, null);
+        try {
+            assertFalse(printJobExecutor.execute(job, null, null, null));
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
     }
 
 }

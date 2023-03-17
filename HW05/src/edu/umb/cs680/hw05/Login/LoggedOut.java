@@ -10,8 +10,8 @@ public class LoggedOut implements State{
         return instance;
     }
 
-    public void login(SecurityContext ctx, EncryptedString pwd){
-        if (Authenticator.authenticate(ctx, pwd)){
+    public void login(EncryptedString pwd, SecurityContext ctx, User user){
+        if (Authenticator.authenticate(user, pwd)){
             ctx.changeState(LoggedIn.getInstance());
         }
         else{

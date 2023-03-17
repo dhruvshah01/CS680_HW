@@ -10,10 +10,10 @@ public class LoggedIn implements State{
     public static LoggedIn getInstance(){
         return instance;
     }
-    public void login(SecurityContext ctx, EncryptedString pwd){
+    public void login(EncryptedString pwd, SecurityContext ctx, User user){
         if (!ctx.isActive()){
             ctx.changeState(LoggedOut.getInstance());
-            ctx.login(pwd);
+            ctx.login(pwd, user);
         }
     }
 

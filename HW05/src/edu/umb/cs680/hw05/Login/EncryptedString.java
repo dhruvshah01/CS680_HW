@@ -5,4 +5,8 @@ public class EncryptedString {
     public EncryptedString(String pwd){
         this.pwd = pwd;
     }
+
+    public String getPwd() {
+        return pwd;
+    }
 }
