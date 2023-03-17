@@ -15,7 +15,7 @@ public class PrintJobExecutorTest {
         ctx.login(pwd, user);
         PrintJobExecutor printJobExecutor = new edu.umb.cs680.hw05.ModelABC.PrintJobExecutor();
         try {
-            printJobExecutor.execute(job, ctx, pwd, user);
+            assertTrue(printJobExecutor.execute(job, ctx, pwd, user));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
@@ -29,7 +29,7 @@ public class PrintJobExecutorTest {
         SecurityContext ctx = new SecurityContext(user);
         PrintJobExecutor printJobExecutor = new edu.umb.cs680.hw05.ModelABC.PrintJobExecutor();
         try {
-            printJobExecutor.execute(job, ctx, pwd, user);
+            assertTrue(printJobExecutor.execute(job, null, null, null));
         } catch (Exception e) {
             throw new RuntimeException(e);
         }
