@@ -1,14 +1,14 @@
 Testcase: edu.umb.cs680.hw05.PrintJobExecutorTest
-Test: ModelXYZPositiveTest() took 7 milli sec(s)
+Test: ModelXYZPositiveTest() took 8 milli sec(s)
 Test: ModelXYZNegativeTest() took 0 milli sec(s)
-Test: ModelABCPositiveTest() took 0 milli sec(s)
+Test: ModelABCPositiveTest() took 1 milli sec(s)
 Test: ModelABCNegativeTest() took 0 milli sec(s)
-Tests run: 4, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 14 milli sec(s)
+Tests run: 4, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 13 milli sec(s)
 ------------- Standard Output ---------------
+Part of PrintJob Class.
+Part of PrintJob Class.
 Authenticated User
 Authenticated User
 Part of PrintJob Class.
 Wrong Password
-Part of PrintJob Class.
-Part of PrintJob Class.
 ------------- ---------------- ---------------
