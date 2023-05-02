@@ -31,12 +31,12 @@
     <target name="compile" depends="resolve">
         <javac srcdir="${src}" destdir="${bin}" includeAntRuntime="no">
             <classpath refid="classpath"/>
-            <include name="edu/umb/cs680/hw11/*.java"/>
+            <include name="edu/umb/cs680/hw10/*.java"/>
             <!-- include name="edu/umb/cs680/hw04/Car.java"/-->
         </javac>
         <javac srcdir="${test.src}" destdir="${test.bin}" includeAntRuntime="no">
             <classpath refid="classpath"/>
-            <include name="edu/umb/cs680/hw11/*.java"/>
+            <include name="edu/umb/cs680/hw10/*.java"/>
             <!-- include name="edu/umb/cs680/hw04/CarTest.java"/-->
         </javac>
     </target>
@@ -52,7 +52,7 @@
             <classpath refid="classpath" />
             <testclasses outputdir="test">
                 <fileset dir="${test.bin}">
-                    <include name="edu/umb/cs680/hw11/*Test.class"/>
+                    <include name="edu/umb/cs680/hw10/*Test.class"/>
                 </fileset>
                 <listener type="legacy-plain" sendSysOut="true"/>
                 <!--listener type="legacy-brief" sendSysOut="true"/-->
@@ -61,15 +61,15 @@
     </target>
 
     <target name="run" depends="test">
-        <java classname="edu.umb.cs680.hw11.Car"
+        <java classname="edu.umb.cs680.hw10.Distance"
               classpathref="classpath"
               fork="true"/>
     </target>
 
     <target name="clean" depends="run">
         <delete includeemptydirs="true">
-            <fileset dir="${bin}/edu/umb/cs680/hw11" includes="**/*"/>
-            <fileset dir="${test.bin}/edu/umb/cs680/hw11" includes="**/*"/>
+            <fileset dir="${bin}/edu/umb/cs680/hw10" includes="**/*"/>
+            <fileset dir="${test.bin}/edu/umb/cs680/hw10" includes="**/*"/>
         </delete>
     </target>
 
