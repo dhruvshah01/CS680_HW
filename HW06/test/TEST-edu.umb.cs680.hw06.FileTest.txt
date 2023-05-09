@@ -1,7 +1,6 @@
 Testcase: edu.umb.cs680.hw06.FileTest
-Test: verifyEqualityForFileDX() took 0 milli sec(s)
-Test: verifyEqualityForFileA() took 1 milli sec(s)
-Test: verifyEqualityForFileB() took 0 milli sec(s)
-Test: verifyEqualityForFileC() took 0 milli sec(s)
-Test: verifyEqualityForFileD() took 0 milli sec(s)
-Tests run: 5, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 1 milli sec(s)
+Test: verifyGetSizeSrcForFileA() took 0 milli sec(s)
+Test: verifyEqualityForFileA() took 0 milli sec(s)
+Test: verifyGetParentForFileX() took 0 milli sec(s)
+Test: verifyGetNameSrc() took 0 milli sec(s)
+Tests run: 4, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 1 milli sec(s)
