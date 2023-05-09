@@ -1,84 +1,111 @@
 package edu.umb.cs680.hw07;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.BeforeAll;
 import static org.junit.jupiter.api.Assertions.*;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class DirectoryTest {
-    public static LocalDateTime time = LocalDateTime.now();
-    static Directory prjRoot = new Directory(null, "prjRoot", 0, time);
-    static Directory src = new Directory(prjRoot, "src", 0, time);
-    static Directory lib = new Directory(prjRoot, "lib", 0, time);
-    static Directory test = new Directory(prjRoot, "test", 0, time);
-
-    static Directory src_test = new Directory(test, "src", 0, time);
-    static File a = new File(src, "a", 5, time);
-    static File b = new File(src, "b", 5, time);
-    static File c = new File(lib, "c", 5, time);
-    static File d = new File(src_test, "d", 5, time);
-    static File x = new File(prjRoot, "x", 5, time);
-    static Link y = new Link(prjRoot, "y", 0, time, src_test);
+    private static FileSystem fs;
+    public LocalDateTime ldt = LocalDateTime.now();
     @BeforeAll
     static void setUp(){
-        prjRoot.appendChild(src);
-        prjRoot.appendChild(lib);
-        prjRoot.appendChild(test);
-        prjRoot.appendChild(x);
-        prjRoot.appendChild(y);
-
-        src.appendChild(a);
-        src.appendChild(b);
-
-        lib.appendChild(c);
-
-        test.appendChild(src_test);
-
-        src_test.appendChild(d);
+        fs = TestFixtureInitializer.createFS();
     }
 
     private String[] dirToStringArray(Directory d){
         String[] dirInfo = {d.getName(), String.valueOf(d.getSize()), (d.getParent() != null) ? String.valueOf(d.getParent().getName()):null, String.valueOf(d.getCreationTime())};
         return dirInfo;
     }
+
     @Test
-    public void verifyEqualityForPrjRootDirectory(){
-        String[] expected = {"prjRoot", "0", null, String.valueOf(time)};
-        Directory actual = prjRoot;
+    public void verifyGetChildrenPrjRoot(){
+        Directory dir = fs.getRootDirs().get(0);
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add("src");
+        expected.add("lib");
+        expected.add("test");
+        expected.add("x");
+        expected.add("y");
+
+        LinkedList<FSElement> children = dir.getChildren();
+        ArrayList<String> actual = new ArrayList<>();
+        for (int i = 0; i < children.size(); i++){
+            actual.add(children.get(i).getName());
+        }
+        assertArrayEquals(expected.toArray(), actual.toArray());
+    }
+
+    @Test
+    public void verifyGetParentSrc(){
+        LinkedList<FSElement> dir = fs.getRootDirs().get(0).getChildren();
+        Directory actual = dir.getFirst().getParent();
+        String expected = "prjRoot";
+        assertEquals(expected, actual.getName());
+    }
+
+    @Test
+    public void verifyGetNameprjRoot(){
+        Directory dir = fs.getRootDirs().getFirst();
+        String expected = "prjRoot";
+        assertEquals(expected, dir.getName());
+    }
+
+    @Test
+    public void verifyGetSize(){
+        Directory dir = fs.getRootDirs().getFirst();
+        assertEquals(0, dir.getSize());
+    }
+
+    @Test
+    public void verifyGetTotalSize(){
+        Directory dir = fs.getRootDirs().getFirst();
+        assertEquals(25, dir.getTotalSize());
+    }
+
+    @Test
+    public void verifyCountChildren(){
+        Directory dir = fs.getRootDirs().get(0);
+        assertEquals(5, dir.countChildren());
+    }
+
+    @Test
+    public void verifyGetSubDirectories(){
+        Directory dir = fs.getRootDirs().get(0);
+        ArrayList<String> expected = new ArrayList<>();
+        expected.add("src");
+        expected.add("lib");
+        expected.add("test");
+
+        LinkedList<Directory> subDir = dir.getSubDirectories();
+        ArrayList<String> actual = new ArrayList<>();
+        for (int i = 0; i < subDir.size(); i++){
+            actual.add(subDir.get(i).getName());
+        }
+        assertArrayEquals(expected.toArray(), actual.toArray());
+    }
+
+    @Test
+    public void verifyEqualityTestPrjRoot(){
+        Directory actual = fs.getRootDirs().get(0);
+        String[] expected = {"prjRoot", "0", null, actual.getCreationTime().toString()};
         assertArrayEquals(expected, dirToStringArray(actual));
     }
 
     @Test
     public void verifyEqualityForSrcDirectory(){
-        String[] expected = {"src", "0", "prjRoot", String.valueOf(time)};
-        Directory actual = src;
+        Directory actual = (Directory) fs.getRootDirs().get(0).getChildren().get(0);
+        String[] expected = {"src", "0", "prjRoot", String.valueOf(actual.getCreationTime())};
         assertArrayEquals(expected, dirToStringArray(actual));
     }
 
-    @Test
-    public void verifyEqualityForLibDirectory(){
-        String[] expected = {"lib", "0", "prjRoot", String.valueOf(time)};
-        Directory actual = lib;
-        assertArrayEquals(expected, dirToStringArray(actual));
+    @AfterAll
+    public static void cleanUp() {
+        fs.getRootDirs().clear();
     }
-
-    @Test
-    public void verifyEqualityForTestDirectory(){
-        String[] expected = {"test", "0", "prjRoot", String.valueOf(time)};
-        Directory actual = test;
-        assertArrayEquals(expected, dirToStringArray(actual));
-    }
-
-    @Test
-    public void verifyEqualityForSrcTestDirectory(){
-        String[] expected = {"src", "0", "test", String.valueOf(time)};
-        Directory actual = src_test;
-        assertArrayEquals(expected, dirToStringArray(actual));
-    }
-
-
-
-
 
 }

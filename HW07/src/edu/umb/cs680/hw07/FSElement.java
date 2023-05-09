@@ -55,7 +55,4 @@ public abstract class FSElement {
     public abstract boolean isDirectory();
     public abstract boolean isFile();
 
-    public static void main(String[] args) {
-        System.out.println("FSElement Class");
-    }
 }

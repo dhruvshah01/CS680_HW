@@ -1,14 +1,13 @@
 package edu.umb.cs680.hw07;
-
 import java.time.LocalDateTime;
 import java.util.LinkedList;
 import java.util.Locale;
 
 public class Directory extends FSElement{
 
+
     public LinkedList<FSElement> children = new LinkedList<FSElement>();
-    public LinkedList<Directory> subDirectories;
-    public LinkedList<File> files;
+
     public int totalSize;
 
     public Directory(Directory parent, String name, int size, LocalDateTime creationTime){
@@ -28,7 +27,8 @@ public class Directory extends FSElement{
     }
 
     public LinkedList<Directory> getSubDirectories() {
-        for (FSElement fs_iterator : children){
+        LinkedList<Directory> subDirectories = new LinkedList<>();
+        for (FSElement fs_iterator : this.children){
             if (fs_iterator.isDirectory()){
                 subDirectories.add((Directory) fs_iterator);
             }
@@ -37,6 +37,7 @@ public class Directory extends FSElement{
     }
 
     public LinkedList<File> getFiles() {
+        LinkedList<File> files = new LinkedList<>();
         for (FSElement fs_iterator : children){
             if (fs_iterator.isFile()){
                 files.add((File) fs_iterator);
