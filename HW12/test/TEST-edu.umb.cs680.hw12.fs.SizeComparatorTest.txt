@@ -1,5 +1,5 @@
 Testcase: edu.umb.cs680.hw12.fs.SizeComparatorTest
-Test: verifyGetFilesSizeComparatorSrc() took 0 milli sec(s)
+Test: verifyGetFilesSizeComparatorSrc() took 1 milli sec(s)
 Test: verifyGetChildrenSizeComparator() took 0 milli sec(s)
 Test: verifyGetFilesSizeComparatorPrjRoot() took 0 milli sec(s)
 Test: verifyGetSubDirectoriesSizeComparator() took 0 milli sec(s)

@@ -1,5 +1,6 @@
 package edu.umb.cs680.hw12.fs;
 
+import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
 
@@ -10,66 +11,63 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class ReverseAlphabeticalComparatorTest {
-    public static LocalDateTime time = LocalDateTime.now();
-    static Directory prjRoot = new Directory(null, "prjRoot", 0, time);
-    static Directory src = new Directory(prjRoot, "src", 0, time);
-    static Directory lib = new Directory(prjRoot, "lib", 0, time);
-    static Directory test = new Directory(prjRoot, "test", 0, time);
-
-    static Directory src_test = new Directory(test, "src", 0, time);
-    static File a = new File(src, "a", 5, time);
-    static File b = new File(src, "b", 5, time);
-    static File c = new File(lib, "c", 5, time);
-    static File d = new File(src_test, "d", 5, time);
-    static File x = new File(prjRoot, "x", 5, time);
-    static Link y = new Link(prjRoot, "y", 0, time, src_test);
+    private static FileSystem fs;
     @BeforeAll
     static void setUp(){
-        prjRoot.appendChild(src);
-        prjRoot.appendChild(lib);
-        prjRoot.appendChild(test);
-        prjRoot.appendChild(x);
-        prjRoot.appendChild(y);
-
-        src.appendChild(a);
-        src.appendChild(b);
-
-        lib.appendChild(c);
-
-        test.appendChild(src_test);
-
-        src_test.appendChild(d);
+        fs = TestFixtureInitializer.createFS();
     }
     @Test
     public void verifyGetChildrenReverseAlphabeticalComparator(){
+        fs = TestFixtureInitializer.createFS();
+        Directory prjRoot = fs.getRootDirs().get(0);
+        Directory src = (Directory) prjRoot.getChildren().get(0);
+        Directory lib = (Directory) prjRoot.getChildren().get(1);
+        Directory test = (Directory) prjRoot.getChildren().get(2);
+        File x = (File) prjRoot.getChildren().get(3);
+        Link y = (Link) prjRoot.getChildren().get(4);
+
         FSElement expected[] = {y, x, test, src, lib};
-        Directory actual = prjRoot;
-        List<FSElement> fse = prjRoot.getChildren(new ReverseAlphabeticalComparator());
-        assertArrayEquals(fse.toArray(), expected);
+        List<FSElement> actual = prjRoot.getChildren(new ReverseAlphabeticalComparator());
+        assertArrayEquals(actual.toArray(), expected);
+        fs.getRootDirs().clear();
     }
 
     @Test
     public void verifyGetFilesReverseAlphabeticalComparatorPrjRoot(){
+        fs = TestFixtureInitializer.createFS();
+        Directory prjRoot = fs.getRootDirs().get(0);
+        File x = (File) prjRoot.getChildren().get(3);
         FSElement expected[] = {x};
-        Directory actual = prjRoot;
         LinkedList<File> fse = prjRoot.getFiles(new ReverseAlphabeticalComparator());
         assertArrayEquals(fse.toArray(), expected);
+        fs.getRootDirs().clear();
     }
 
     @Test
     public void verifyGetFilesReverseAlphabeticalComparatorSrc(){
+        fs = TestFixtureInitializer.createFS();
+        Directory prjRoot = fs.getRootDirs().get(0);
+        Directory src = (Directory) prjRoot.getChildren().get(0);
+        File a = (File) src.getChildren().get(0);
+        File b = (File) src.getChildren().get(1);
         FSElement expected[] = {b, a};
-        Directory actual = src;
-        LinkedList<File> fse = src.getFiles(new ReverseAlphabeticalComparator());
-        assertArrayEquals(fse.toArray(), expected);
+        LinkedList<File> actual = src.getFiles(new ReverseAlphabeticalComparator());
+        assertArrayEquals(actual.toArray(), expected);
+        fs.getRootDirs().clear();
     }
 
     @Test
     public void verifyGetSubDirectoriesReverseAlphabeticalComparator(){
+        fs = TestFixtureInitializer.createFS();
+        Directory prjRoot = fs.getRootDirs().get(0);
+        Directory src = (Directory) prjRoot.getChildren().get(0);
+        Directory lib = (Directory) prjRoot.getChildren().get(1);
+        Directory test = (Directory) prjRoot.getChildren().get(2);
         FSElement expected[] = {test, src, lib};
-        Directory actual = prjRoot;
-        LinkedList<Directory> fse = prjRoot.getSubDirectories(new ReverseAlphabeticalComparator());
-        assertArrayEquals(fse.toArray(), expected);
+        LinkedList<Directory> actual = prjRoot.getSubDirectories(new ReverseAlphabeticalComparator());
+        assertArrayEquals(actual.toArray(), expected);
+        fs.getRootDirs().clear();
     }
+
 
 }

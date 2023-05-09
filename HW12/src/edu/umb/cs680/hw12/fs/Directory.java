@@ -7,8 +7,7 @@ import java.util.LinkedList;
 
 public class Directory extends FSElement{
     public LinkedList<FSElement> children = new LinkedList<FSElement>();
-    public LinkedList<Directory> subDirectories;
-    public LinkedList<File> files;
+
     public int totalSize;
 
     public Directory(Directory parent, String name, int size, LocalDateTime creationTime){
@@ -17,6 +16,27 @@ public class Directory extends FSElement{
     public LinkedList<FSElement> getChildren(){
         return this.children;
     }
+
+    public LinkedList<Directory> getSubDirectories() {
+        LinkedList<Directory> subDirectories = new LinkedList<>();
+        for (FSElement fs_iterator : this.children){
+            if (fs_iterator.isDirectory()){
+                subDirectories.add((Directory) fs_iterator);
+            }
+        }
+        return subDirectories;
+    }
+
+    public LinkedList<File> getFiles() {
+        LinkedList<File> files = new LinkedList<>();
+        for (FSElement fs_iterator : children){
+            if (fs_iterator.isFile()){
+                files.add((File) fs_iterator);
+            }
+        }
+        return files;
+    }
+
     public LinkedList<FSElement> getChildren(Comparator<FSElement> fs){
         LinkedList<FSElement> children = this.children;
         Collections.sort(children, fs);
@@ -32,15 +52,6 @@ public class Directory extends FSElement{
         return getChildren().size();
     }
 
-    public LinkedList<Directory> getSubDirectories() {
-        for (FSElement fs_iterator : children){
-            if (fs_iterator.isDirectory()){
-                subDirectories.add((Directory) fs_iterator);
-            }
-        }
-        return subDirectories;
-    }
-
     public LinkedList<Directory> getSubDirectories(Comparator<FSElement> fs){
         LinkedList<Directory> subDirectories = new LinkedList<>();
 
@@ -52,16 +63,6 @@ public class Directory extends FSElement{
         Collections.sort(subDirectories, fs);
         return subDirectories;
     }
-
-    public LinkedList<File> getFiles() {
-        for (FSElement fs_iterator : children){
-            if (fs_iterator.isFile()){
-                files.add((File) fs_iterator);
-            }
-        }
-        return files;
-    }
-
     public LinkedList<File> getFiles(Comparator<FSElement> fs){
         LinkedList<File> files = new LinkedList();
 
