@@ -9,70 +9,70 @@ import java.util.LinkedList;
 import static org.junit.jupiter.api.Assertions.assertArrayEquals;
 
 public class SizeComparatorTest {
-    public static LocalDateTime time = LocalDateTime.now();
-    static Directory prjRoot = new Directory(null, "prjRoot", 0, time);
-    static Directory src = new Directory(prjRoot, "src", 0, time);
-    static Directory lib = new Directory(prjRoot, "lib", 0, time);
-    static Directory test = new Directory(prjRoot, "test", 0, time);
-
-    static Directory src_test = new Directory(test, "src", 0, time);
-    static File a = new File(src, "a", 5, time);
-    static File b = new File(src, "b", 5, time);
-    static File c = new File(lib, "c", 5, time);
-    static File d = new File(src_test, "d", 5, time);
-    static File x = new File(prjRoot, "x", 5, time);
-    static Link y = new Link(prjRoot, "y", 0, time, src_test);
+    private static FileSystem fs;
     @BeforeAll
     static void setUp(){
-        prjRoot.appendChild(src);
-        prjRoot.appendChild(lib);
-        prjRoot.appendChild(test);
-        prjRoot.appendChild(x);
-        prjRoot.appendChild(y);
-
-        src.appendChild(a);
-        src.appendChild(b);
-
-        lib.appendChild(c);
-
-        test.appendChild(src_test);
-
-        src_test.appendChild(d);
+        fs = TestFixtureInitializer.createFS();
     }
 
     @Test
     public void verifyGetChildren(){
+        fs = TestFixtureInitializer.createFS();
+        Directory prjRoot = fs.getRootDirs().get(0);
+        Directory src = (Directory) prjRoot.getChildren().get(0);
+        Directory lib = (Directory) prjRoot.getChildren().get(1);
+        Directory test = (Directory) prjRoot.getChildren().get(2);
+        File x = (File) prjRoot.getChildren().get(3);
+        Link y = (Link) prjRoot.getChildren().get(4);
         FSElement expected[] = {src, lib, test, y, x};
         LinkedList<FSElement> actual = prjRoot.getChildren((FSElement fs1, FSElement fs2) -> {
             return fs1.getSize() - fs2.getSize();
         });
         assertArrayEquals(actual.toArray(), expected);
+        fs.getRootDirs().clear();
     }
 
     @Test
     public void verifyGetFilesPrjRoot(){
+        fs = TestFixtureInitializer.createFS();
+        Directory prjRoot = fs.getRootDirs().get(0);
+        File x = (File) prjRoot.getChildren().get(3);
         FSElement expected[] = {x};
         LinkedList<File> actual = prjRoot.getFiles((FSElement fs1, FSElement fs2) -> {
             return fs1.getSize() - fs2.getSize();
         });
         assertArrayEquals(actual.toArray(), expected);
+        fs.getRootDirs().clear();
     }
 
     @Test
     public void verifyGetFilesSrc(){
+        fs = TestFixtureInitializer.createFS();
+        Directory prjRoot = fs.getRootDirs().get(0);
+        Directory src = (Directory) prjRoot.getChildren().get(0);
+        File a = (File) src.getChildren().get(0);
+        File b = (File) src.getChildren().get(1);
         FSElement expected[] = {a, b};
         LinkedList<File> actual = src.getFiles((FSElement fs1, FSElement fs2) -> {
             return fs1.getSize() - fs2.getSize();
         });
         assertArrayEquals(actual.toArray(), expected);
+        fs.getRootDirs().clear();
     }
 
     @Test
     public void verifyGetSubDirectories(){
+        fs = TestFixtureInitializer.createFS();
+        Directory prjRoot = fs.getRootDirs().get(0);
+        Directory src = (Directory) prjRoot.getChildren().get(0);
+        Directory lib = (Directory) prjRoot.getChildren().get(1);
+        Directory test = (Directory) prjRoot.getChildren().get(2);
+
         FSElement expected[] = {src, lib, test};
         LinkedList<Directory> actual = prjRoot.getSubDirectories((FSElement fs1, FSElement fs2) -> {
             return fs1.getSize() - (fs2.getSize());
         });
         assertArrayEquals(actual.toArray(), expected);
+        fs.getRootDirs().clear();
     }
 }

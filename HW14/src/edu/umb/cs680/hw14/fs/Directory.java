@@ -4,13 +4,12 @@ import java.time.LocalDateTime;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.LinkedList;
-import java.util.Locale;
+
 
 public class Directory extends FSElement{
 
     public LinkedList<FSElement> children = new LinkedList<FSElement>();
-    public LinkedList<Directory> subDirectories;
-    public LinkedList<File> files;
+
     public int totalSize;
 
     public Directory(Directory parent, String name, int size, LocalDateTime creationTime){
@@ -20,9 +19,24 @@ public class Directory extends FSElement{
         return this.children;
     }
 
-    public void appendChild(FSElement child){
-        this.children.add(child);
-        child.setParent(this);
+    public LinkedList<Directory> getSubDirectories() {
+        LinkedList<Directory> subDirectories = new LinkedList<>();
+        for (FSElement fs_iterator : this.children){
+            if (fs_iterator.isDirectory()){
+                subDirectories.add((Directory) fs_iterator);
+            }
+        }
+        return subDirectories;
+    }
+
+    public LinkedList<File> getFiles() {
+        LinkedList<File> files = new LinkedList<>();
+        for (FSElement fs_iterator : children){
+            if (fs_iterator.isFile()){
+                files.add((File) fs_iterator);
+            }
+        }
+        return files;
     }
 
     public LinkedList<FSElement> getChildren(Comparator<FSElement> fs){
@@ -31,17 +45,13 @@ public class Directory extends FSElement{
         return children;
     }
 
-    public int countChildren(){
-        return getChildren().size();
+    public void appendChild(FSElement child){
+        this.children.add(child);
+        child.setParent(this);
     }
 
-    public LinkedList<Directory> getSubDirectories() {
-        for (FSElement fs_iterator : children){
-            if (fs_iterator.isDirectory()){
-                subDirectories.add((Directory) fs_iterator);
-            }
-        }
-        return subDirectories;
+    public int countChildren(){
+        return getChildren().size();
     }
 
     public LinkedList<Directory> getSubDirectories(Comparator<FSElement> fs){
@@ -55,16 +65,6 @@ public class Directory extends FSElement{
         Collections.sort(subDirectories, fs);
         return subDirectories;
     }
-
-    public LinkedList<File> getFiles() {
-        for (FSElement fs_iterator : children){
-            if (fs_iterator.isFile()){
-                files.add((File) fs_iterator);
-            }
-        }
-        return files;
-    }
-
     public LinkedList<File> getFiles(Comparator<FSElement> fs){
         LinkedList<File> files = new LinkedList();
 
@@ -77,7 +77,6 @@ public class Directory extends FSElement{
         Collections.sort(files, fs);
         return files;
     }
-
 
     public int getTotalSize() {
         totalSize = 0;
@@ -108,4 +107,5 @@ public class Directory extends FSElement{
             fs_iterator.accept(v);
         }
     }
+
 }

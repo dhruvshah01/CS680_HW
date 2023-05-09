@@ -57,7 +57,5 @@ public abstract class FSElement {
 
     public abstract void accept(FSVisitor v);
 
-    public static void main(String[] args) {
-        System.out.println("FSElement Class");
-    }
+
 }
