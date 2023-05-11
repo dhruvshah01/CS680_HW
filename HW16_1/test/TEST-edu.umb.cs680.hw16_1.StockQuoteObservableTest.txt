@@ -1,0 +1,25 @@
+Testcase: edu.umb.cs680.hw16_1.StockQuoteObservableTest
+Test: verifyChangeObserver() took 6 milli sec(s)
+Test: verifyAddObserver() took 2 milli sec(s)
+Test: verifyRemoveObserver() took 0 milli sec(s)
+Tests run: 3, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 17 milli sec(s)
+------------- Standard Output ---------------
+Ticker: NYSE
+Quote: 15257.73
+Implemented Line Chart
+Ticker: NYSE
+Quote: 15257.73
+Implemented 3D
+Ticker: NYSE
+Quote: 15257.73
+Implemented Table
+Ticker: DJI
+Quote: 33279.73
+Implemented Line Chart
+Ticker: DJI
+Quote: 33279.73
+Implemented 3D
+Ticker: DJI
+Quote: 33279.73
+Implemented Table
+------------- ---------------- ---------------
