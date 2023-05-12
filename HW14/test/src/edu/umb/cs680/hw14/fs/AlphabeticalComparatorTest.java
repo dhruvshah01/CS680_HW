@@ -27,7 +27,7 @@ public class AlphabeticalComparatorTest {
         LinkedList<FSElement> actual = prjRoot.getChildren((FSElement fs1, FSElement fs2) -> {
             return fs1.getName().compareTo(fs2.getName());
         });
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 
@@ -40,7 +40,7 @@ public class AlphabeticalComparatorTest {
         LinkedList<File> actual = prjRoot.getFiles((FSElement fs1, FSElement fs2) -> {
             return fs1.getName().compareTo(fs2.getName());
         });
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 
@@ -55,7 +55,7 @@ public class AlphabeticalComparatorTest {
         LinkedList<File> actual = src.getFiles((FSElement fs1, FSElement fs2) -> {
             return fs1.getName().compareTo(fs2.getName());
         });
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 
@@ -71,7 +71,7 @@ public class AlphabeticalComparatorTest {
         LinkedList<Directory> actual = prjRoot.getSubDirectories((FSElement fs1, FSElement fs2) -> {
             return fs1.getName().compareTo(fs2.getName());
         });
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 }

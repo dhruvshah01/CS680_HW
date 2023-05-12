@@ -28,7 +28,7 @@ public class SizeComparatorTest {
         LinkedList<FSElement> actual = prjRoot.getChildren((FSElement fs1, FSElement fs2) -> {
             return fs1.getSize() - fs2.getSize();
         });
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 
@@ -41,7 +41,7 @@ public class SizeComparatorTest {
         LinkedList<File> actual = prjRoot.getFiles((FSElement fs1, FSElement fs2) -> {
             return fs1.getSize() - fs2.getSize();
         });
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 
@@ -56,7 +56,7 @@ public class SizeComparatorTest {
         LinkedList<File> actual = src.getFiles((FSElement fs1, FSElement fs2) -> {
             return fs1.getSize() - fs2.getSize();
         });
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 
@@ -72,7 +72,7 @@ public class SizeComparatorTest {
         LinkedList<Directory> actual = prjRoot.getSubDirectories((FSElement fs1, FSElement fs2) -> {
             return fs1.getSize() - (fs2.getSize());
         });
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 }

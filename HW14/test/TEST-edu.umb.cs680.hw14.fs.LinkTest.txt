@@ -1,5 +1,5 @@
 Testcase: edu.umb.cs680.hw14.fs.LinkTest
 Test: verifyGetSize() took 0 milli sec(s)
 Test: verifyGetParent() took 0 milli sec(s)
-Test: verifyGetTarget() took 1 milli sec(s)
-Tests run: 3, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 1 milli sec(s)
+Test: verifyGetTarget() took 0 milli sec(s)
+Tests run: 3, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 0 milli sec(s)

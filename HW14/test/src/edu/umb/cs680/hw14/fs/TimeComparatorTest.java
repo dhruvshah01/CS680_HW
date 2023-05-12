@@ -29,7 +29,7 @@ public class TimeComparatorTest {
         LinkedList<FSElement> actual = prjRoot.getChildren((FSElement fs1, FSElement fs2) -> {
             return fs1.getCreationTime().compareTo(fs2.getCreationTime());
         });
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 
@@ -42,7 +42,7 @@ public class TimeComparatorTest {
         LinkedList<File> actual = prjRoot.getFiles((FSElement fs1, FSElement fs2) -> {
             return fs1.getCreationTime().compareTo(fs2.getCreationTime());
         });
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 
@@ -57,7 +57,7 @@ public class TimeComparatorTest {
         LinkedList<File> actual = src.getFiles((FSElement fs1, FSElement fs2) -> {
             return fs1.getCreationTime().compareTo(fs2.getCreationTime());
         });
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 
@@ -72,7 +72,7 @@ public class TimeComparatorTest {
         LinkedList<Directory> actual = prjRoot.getSubDirectories((FSElement fs1, FSElement fs2) -> {
             return fs1.getCreationTime().compareTo(fs2.getCreationTime());
         });
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 }
