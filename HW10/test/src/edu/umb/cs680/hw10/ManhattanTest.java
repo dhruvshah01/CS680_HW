@@ -52,11 +52,11 @@ public class ManhattanTest {
     @Test
     public void verifyManhattanTestMatrix(){
 
-        Double[][] expected = { {0.0, 0.06675459158643082, 0.04087893687163008, 0.026033105386917332, 0.10220756390929658},
-                                {0.06675459158643082, 0.0, 0.025875654714800744, 0.04072148619951349, 0.1689621554957274},
-                                {0.04087893687163008, 0.025875654714800744, 0.0, 0.014845831484712746, 0.14308650078092666},
-                                {0.026033105386917332, 0.04072148619951349, 0.014845831484712746, 0.0, 0.12824066929621392},
-                                {0.10220756390929658, 0.1689621554957274, 0.14308650078092666, 0.12824066929621392, 0.0}
+        Double[][] expected = { {0.0, 0.33333333333333326, 1.2380952380952381, 1.0, 2.1523809523809523},
+                                {0.33333333333333326, 0.0, 0.9047619047619047, 0.6666666666666667, 1.8190476190476192},
+                                {1.2380952380952381, 0.9047619047619047, 0.0, 0.23809523809523803, 0.9142857142857144},
+                                {1.0, 0.6666666666666667, 0.23809523809523803, 0.0, 1.1523809523809523},
+                                {2.1523809523809523, 1.8190476190476192, 0.9142857142857144, 1.1523809523809523, 0.0}
                                 };
 
         List<Double> car1 = new ArrayList<>();
@@ -84,19 +84,39 @@ public class ManhattanTest {
         car5.add(2022.0);
         car5.add(23000.0);
 
-        List<Double> normalized_car1 = minMaxNormalization(car1);
-        List<Double> normalized_car2 = minMaxNormalization(car2);
-        List<Double> normalized_car3 = minMaxNormalization(car3);
-        List<Double> normalized_car4 = minMaxNormalization(car4);
-        List<Double> normalized_car5 = minMaxNormalization(car5);
+        List<Double> priceNormalization = new ArrayList<>();
+        priceNormalization.add(car1.get(2));
+        priceNormalization.add(car2.get(2));
+        priceNormalization.add(car3.get(2));
+        priceNormalization.add(car4.get(2));
+        priceNormalization.add(car5.get(2));
+
+        List<Double> mileageNormalization = new ArrayList<>();
+        mileageNormalization.add(car1.get(0));
+        mileageNormalization.add(car2.get(0));
+        mileageNormalization.add(car3.get(0));
+        mileageNormalization.add(car4.get(0));
+        mileageNormalization.add(car5.get(0));
+
+        List<Double> yearNormalization = new ArrayList<>();
+        yearNormalization.add(car1.get(1));
+        yearNormalization.add(car2.get(1));
+        yearNormalization.add(car3.get(1));
+        yearNormalization.add(car4.get(1));
+        yearNormalization.add(car5.get(1));
+
+        List<Double> normalized_year = minMaxNormalization(yearNormalization);
+        List<Double> normalized_mileage = minMaxNormalization(mileageNormalization);
+        List<Double> normalized_price = minMaxNormalization(priceNormalization);
+
 
         //System.out.printf(Arrays.toString(normalized_car.toArray()));
         List<List<Double>> actual = new ArrayList<>();
-        actual.add(Arrays.asList(normalized_car1.get(0), normalized_car1.get(1), normalized_car1.get(2)));
-        actual.add(Arrays.asList(normalized_car2.get(0), normalized_car2.get(1), normalized_car2.get(2)));
-        actual.add(Arrays.asList(normalized_car3.get(0), normalized_car3.get(1), normalized_car3.get(2)));
-        actual.add(Arrays.asList(normalized_car4.get(0), normalized_car4.get(1), normalized_car4.get(2)));
-        actual.add(Arrays.asList(normalized_car5.get(0), normalized_car5.get(1), normalized_car5.get(2)));
+        actual.add(Arrays.asList(normalized_mileage.get(0), normalized_year.get(0), normalized_price.get(0)));
+        actual.add(Arrays.asList(normalized_mileage.get(1), normalized_year.get(1), normalized_price.get(1)));
+        actual.add(Arrays.asList(normalized_mileage.get(2), normalized_year.get(2), normalized_price.get(2)));
+        actual.add(Arrays.asList(normalized_mileage.get(3), normalized_year.get(3), normalized_price.get(3)));
+        actual.add(Arrays.asList(normalized_mileage.get(4), normalized_year.get(4), normalized_price.get(4)));
 
 
         actual = Distance.matrix(actual, new Manhattan());
