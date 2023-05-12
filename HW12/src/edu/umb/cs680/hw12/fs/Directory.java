@@ -14,7 +14,9 @@ public class Directory extends FSElement{
         super(parent, name, 0, creationTime);
     }
     public LinkedList<FSElement> getChildren(){
-        return this.children;
+        LinkedList<FSElement> children = this.children;
+        Collections.sort(children, new AlphabeticalComparator());
+        return children;
     }
 
     public LinkedList<Directory> getSubDirectories() {
@@ -24,6 +26,7 @@ public class Directory extends FSElement{
                 subDirectories.add((Directory) fs_iterator);
             }
         }
+        Collections.sort(subDirectories, new AlphabeticalComparator());
         return subDirectories;
     }
 
@@ -34,12 +37,17 @@ public class Directory extends FSElement{
                 files.add((File) fs_iterator);
             }
         }
+        Collections.sort(files, new AlphabeticalComparator());
         return files;
     }
 
     public LinkedList<FSElement> getChildren(Comparator<FSElement> fs){
         LinkedList<FSElement> children = this.children;
-        Collections.sort(children, fs);
+        if (!fs.equals(null)) {
+            Collections.sort(children, fs);
+        }else{
+            Collections.sort(children, new AlphabeticalComparator());
+        }
         return children;
     }
 

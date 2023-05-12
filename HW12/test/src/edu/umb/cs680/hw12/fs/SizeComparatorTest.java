@@ -19,12 +19,12 @@ public class SizeComparatorTest {
     public void verifyGetChildrenSizeComparator(){
         fs = TestFixtureInitializer.createFS();
         Directory prjRoot = fs.getRootDirs().get(0);
-        Directory src = (Directory) prjRoot.getChildren().get(0);
-        Directory lib = (Directory) prjRoot.getChildren().get(1);
+        Directory src = (Directory) prjRoot.getChildren().get(1);
+        Directory lib = (Directory) prjRoot.getChildren().get(0);
         Directory test = (Directory) prjRoot.getChildren().get(2);
         File x = (File) prjRoot.getChildren().get(3);
         Link y = (Link) prjRoot.getChildren().get(4);
-        FSElement expected[] = {src, lib, test, y, x};
+        FSElement expected[] = {lib, src, test, y, x};
         List<FSElement> actual = prjRoot.getChildren(new SizeComparator());
         assertArrayEquals(actual.toArray(), expected);
         fs.getRootDirs().clear();
@@ -45,7 +45,7 @@ public class SizeComparatorTest {
     public void verifyGetFilesSizeComparatorSrc(){
         fs = TestFixtureInitializer.createFS();
         Directory prjRoot = fs.getRootDirs().get(0);
-        Directory src = (Directory) prjRoot.getChildren().get(0);
+        Directory src = (Directory) prjRoot.getChildren().get(1);
         File a = (File) src.getChildren().get(0);
         File b = (File) src.getChildren().get(1);
         FSElement expected[] = {a, b};
@@ -58,10 +58,10 @@ public class SizeComparatorTest {
     public void verifyGetSubDirectoriesSizeComparator(){
         fs = TestFixtureInitializer.createFS();
         Directory prjRoot = fs.getRootDirs().get(0);
-        Directory src = (Directory) prjRoot.getChildren().get(0);
-        Directory lib = (Directory) prjRoot.getChildren().get(1);
+        Directory src = (Directory) prjRoot.getChildren().get(1);
+        Directory lib = (Directory) prjRoot.getChildren().get(0);
         Directory test = (Directory) prjRoot.getChildren().get(2);
-        FSElement expected[] = {src, lib, test};
+        FSElement expected[] = {lib, src, test};
         LinkedList<Directory> actual = prjRoot.getSubDirectories(new SizeComparator());
         assertArrayEquals(actual.toArray(), expected);
         fs.getRootDirs().clear();
