@@ -37,8 +37,8 @@ public class ReverseAlphabeticalComparatorTest {
         Directory prjRoot = fs.getRootDirs().get(0);
         File x = (File) prjRoot.getChildren().get(3);
         FSElement expected[] = {x};
-        LinkedList<File> fse = prjRoot.getFiles(new ReverseAlphabeticalComparator());
-        assertArrayEquals(fse.toArray(), expected);
+        LinkedList<File> actual = prjRoot.getFiles(new ReverseAlphabeticalComparator());
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 
@@ -51,7 +51,7 @@ public class ReverseAlphabeticalComparatorTest {
         File b = (File) src.getFiles().get(1);
         FSElement expected[] = {b, a};
         LinkedList<File> actual = src.getFiles(new ReverseAlphabeticalComparator());
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 
@@ -64,7 +64,7 @@ public class ReverseAlphabeticalComparatorTest {
         Directory test = (Directory) prjRoot.getChildren().get(2);
         FSElement expected[] = {test, src, lib};
         LinkedList<Directory> actual = prjRoot.getSubDirectories(new ReverseAlphabeticalComparator());
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 

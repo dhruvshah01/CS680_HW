@@ -27,7 +27,7 @@ public class TimeStampComparatorTest {
         Link y = (Link) prjRoot.getChildren().get(4);
         FSElement expected[] = {lib, src, test, x, y};
         List<FSElement> actual = prjRoot.getChildren(new TimeStampComparator());
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 
@@ -38,7 +38,7 @@ public class TimeStampComparatorTest {
         File x = (File) prjRoot.getChildren().get(3);
         FSElement expected[] = {x};
         LinkedList<File> actual = prjRoot.getFiles(new TimeStampComparator());
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 
@@ -51,7 +51,7 @@ public class TimeStampComparatorTest {
         File b = (File) src.getChildren().get(1);
         FSElement expected[] = {a, b};
         LinkedList<File> actual = src.getFiles(new TimeStampComparator());
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 
@@ -64,7 +64,7 @@ public class TimeStampComparatorTest {
         Directory test = (Directory) prjRoot.getChildren().get(2);
         FSElement expected[] = {lib, src, test};
         LinkedList<Directory> actual = prjRoot.getSubDirectories(new TimeStampComparator());
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 

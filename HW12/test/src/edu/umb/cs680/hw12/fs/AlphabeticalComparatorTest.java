@@ -40,7 +40,7 @@ public class AlphabeticalComparatorTest {
         File x = (File) prjRoot.getChildren().get(3);
         FSElement expected[] = {x};
         LinkedList<File> actual = prjRoot.getFiles(new AlphabeticalComparator());
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 
@@ -54,7 +54,7 @@ public class AlphabeticalComparatorTest {
         FSElement expected[] = {a, b};
 
         LinkedList<File> actual = src.getFiles(new AlphabeticalComparator());
-        assertArrayEquals(actual.toArray(), expected);
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 
@@ -66,8 +66,8 @@ public class AlphabeticalComparatorTest {
         Directory lib = (Directory) prjRoot.getChildren().get(0);
         Directory test = (Directory) prjRoot.getChildren().get(2);
         FSElement expected[] = {lib, src, test};
-        LinkedList<Directory> fse = prjRoot.getSubDirectories(new AlphabeticalComparator());
-        assertArrayEquals(fse.toArray(), expected);
+        LinkedList<Directory> actual = prjRoot.getSubDirectories(new AlphabeticalComparator());
+        assertArrayEquals(expected, actual.toArray());
         fs.getRootDirs().clear();
     }
 
