@@ -35,7 +35,7 @@ public class YearComparatorTest {
             actual.add(car.getYear());
         }
 
-        assertArrayEquals(actual.toArray(), expected.toArray());
+        assertArrayEquals(expected.toArray(), actual.toArray());
 
     }
 
@@ -54,7 +54,7 @@ public class YearComparatorTest {
         for (Car car : usedCars){
             actual.add(car.getYear());
         }
-        assertArrayEquals(actual.toArray(), expected.toArray());
+        assertArrayEquals(expected.toArray(), actual.toArray());
 
     }
 

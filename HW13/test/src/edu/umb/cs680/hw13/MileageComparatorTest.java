@@ -34,7 +34,7 @@ public class MileageComparatorTest {
             actual.add(car.getMileage());
         }
 
-        assertArrayEquals(actual.toArray(), expected.toArray());
+        assertArrayEquals(expected.toArray(), actual.toArray());
 
     }
 
@@ -53,7 +53,7 @@ public class MileageComparatorTest {
         for (Car car : usedCars){
             actual.add(car.getMileage());
         }
-        assertArrayEquals(actual.toArray(), expected.toArray());
+        assertArrayEquals(expected.toArray(), actual.toArray());
 
     }
 

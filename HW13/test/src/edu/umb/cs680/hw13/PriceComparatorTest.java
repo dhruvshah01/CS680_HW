@@ -34,7 +34,7 @@ public class PriceComparatorTest {
             actual.add(car.getPrice());
         }
 
-        assertArrayEquals(actual.toArray(), expected.toArray());
+        assertArrayEquals(expected.toArray(), actual.toArray());
 
     }
 
@@ -53,7 +53,7 @@ public class PriceComparatorTest {
         for (Car car : usedCars){
             actual.add(car.getPrice());
         }
-        assertArrayEquals(actual.toArray(), expected.toArray());
+        assertArrayEquals(expected.toArray(), actual.toArray());
 
     }
 

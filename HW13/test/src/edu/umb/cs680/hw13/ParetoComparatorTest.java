@@ -35,7 +35,7 @@ public class ParetoComparatorTest {
             actual.add(car.getModel());
         }
 
-        assertArrayEquals(actual.toArray(), expected.toArray());
+        assertArrayEquals(expected.toArray(), actual.toArray());
 
     }
 
@@ -54,7 +54,7 @@ public class ParetoComparatorTest {
         for (Car car : usedCars){
             actual.add(car.getModel());
         }
-        assertArrayEquals(actual.toArray(), expected.toArray());
+        assertArrayEquals(expected.toArray(), actual.toArray());
 
     }
 
