@@ -1,0 +1,27 @@
+Testcase: edu.umb.cs680.hw16_2.StockQuoteObservableTest
+Test: verifyChangeObserver() took 7 milli sec(s)
+Test: verifyAddObserver() took 1 milli sec(s)
+Test: verifyUpdateObserver() took 0 milli sec(s)
+Test: verifyRemoveObserver() took 0 milli sec(s)
+Tests run: 4, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 20 milli sec(s)
+------------- Standard Output ---------------
+Stock Ticker: NYSE
+Stock Price: 15257.73
+Line Chart Observer changed
+Stock Ticker: NYSE
+Stock Price: 15257.73
+Table Observer changed.
+Stock Ticker: NYSE
+Stock Price: 15257.73
+3D Observer changed.
+Stock Ticker: DJI
+Stock Price: 33279.73
+Line Chart Observer changed
+Stock Ticker: DJI
+Stock Price: 33279.73
+Table Observer changed.
+Stock Ticker: DJI
+Stock Price: 33279.73
+3D Observer changed.
+Updating event
+------------- ---------------- ---------------
