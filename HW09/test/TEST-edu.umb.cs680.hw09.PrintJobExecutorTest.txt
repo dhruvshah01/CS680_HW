@@ -1,0 +1,10 @@
+Testcase: edu.umb.cs680.hw09.PrintJobExecutorTest
+Test: ModelABCPositiveTest() took 9 milli sec(s)
+Test: ModelABCNegativeTest() took 1 milli sec(s)
+Tests run: 2, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 15 milli sec(s)
+------------- Standard Output ---------------
+Authenticated User
+Authenticated User
+Singleton Printer Class
+Wrong Password
+------------- ---------------- ---------------
