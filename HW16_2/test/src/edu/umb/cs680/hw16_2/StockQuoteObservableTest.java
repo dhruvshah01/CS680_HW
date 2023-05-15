@@ -36,12 +36,15 @@ public class StockQuoteObservableTest {
     public void verifyChangeObserver(){
         observable.changeQuote("NYSE", 15257.73);
         observable.changeQuote("DJI", 33279.73);
+        assertEquals(33279.73, observable.getMapTickerQuote().get("DJI"));
         }
 
     @Test
     public void verifyUpdateObserver(){
         observable.update(ThreeD_Observer, 35000);
+        assertFalse(observable.getObservers().isEmpty());
     }
+
 
     @Test
     public void verifyRemoveObserver(){

@@ -5,7 +5,6 @@ import java.util.List;
 
 public abstract class Observable<T> {
 	private LinkedList<Observer<T>> observers = new LinkedList<>();
-	
 	public void addObserver(Observer<T> o) {
 		observers.add(o);
 	}
