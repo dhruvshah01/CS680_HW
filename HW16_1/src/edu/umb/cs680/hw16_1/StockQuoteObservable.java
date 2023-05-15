@@ -2,7 +2,7 @@ package edu.umb.cs680.hw16_1;
 
 import java.util.HashMap;
 
-public class StockQuoteObservable extends Observable{
+public class StockQuoteObservable extends Observable<StockEvent>{
     HashMap<String, Double> mapTickerQuote;
     public StockQuoteObservable() {
         this.mapTickerQuote = new HashMap<>();

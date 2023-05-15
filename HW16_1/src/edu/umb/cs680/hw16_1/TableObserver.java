@@ -1,6 +1,6 @@
 package edu.umb.cs680.hw16_1;
 
-public class TableObserver implements Observer{
+public class TableObserver implements Observer<StockEvent>{
     private StockEvent stockEvent;
 
     public StockEvent getStockEvent() {
@@ -8,8 +8,8 @@ public class TableObserver implements Observer{
     }
 
     @Override
-    public void update(Observable sender, Object event) {
-        StockEvent e = new StockEvent(((StockEvent)event).getTicker(), ((StockEvent)event).getQuote());
+    public void update(Observable<StockEvent> o, StockEvent event) {
+        StockEvent e = new StockEvent((event).getTicker(), (event).getQuote());
         this.stockEvent = e;
         System.out.println("Ticker: " + e.getTicker());
         System.out.println("Quote: " + e.getQuote());
