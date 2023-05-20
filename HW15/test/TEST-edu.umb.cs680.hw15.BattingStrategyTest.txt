@@ -1,0 +1,12 @@
+Testcase: edu.umb.cs680.hw15.BattingStrategyTest
+Test: verifyDefensiveBattingStrategy() took 10 milli sec(s)
+Test: verifyAggressiveBattingStrategy() took 1 milli sec(s)
+Tests run: 2, Failures: 0, Skipped: 0, Aborted: 0, Time elapsed: 15 milli sec(s)
+------------- Standard Output ---------------
+Defensive Batting Approach
+Expected StrikeRate: 100
+Power Hitting: false
+Aggressive Batting Approach
+Expected StrikeRate: 150
+Power Hitting: true
+------------- ---------------- ---------------
