@@ -30,4 +30,4 @@ I initialize the strategies during run time execution as we are required by the 
 
 Here is an image that will help you understand the flow of the work,
 
-![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://myoctocat.com/assets/images/base-octocat.svg)
+![Screenshot of a comment on a GitHub issue showing an image, added in the Markdown, of an Octocat smiling and raising a tentacle.](https://github.com/dhruvshah01/CS680_HW/blob/main/HW15/Diagrams/ClassDiagram.svg)
